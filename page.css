@@ -8,3 +8,4 @@ p,li{color:#C9BFAE;font-size:17px}
 .updated{color:#8A7F6E;font-size:14px}
 footer{border-top:1px solid #1F1B16;color:#8A7F6E;font-size:14px;display:flex;gap:24px;flex-wrap:wrap}
 footer a{color:#B8AD9A;text-decoration:none}
+a.button{display:inline-block;margin-top:8px;padding:14px 28px;border-radius:999px;background:#E2B662;color:#140E06;font-family:'Instrument Serif',serif;font-size:22px;text-decoration:none}
