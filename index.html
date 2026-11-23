@@ -22,6 +22,7 @@ a{color:#E2B662}a:hover{color:#F0C978}
 @keyframes flame{0%,100%{transform:scaleY(1) translateY(0)}50%{transform:scaleY(1.06) translateY(-1px)}}
 .fl{animation:flame 2.4s ease-in-out infinite;transform-origin:50% 100%}
 input::placeholder{color:#6F675A}
+@media (max-width:700px){.step .txt{order:-1}}
 </style>
 
 </head>
@@ -90,28 +91,30 @@ input::placeholder{color:#6F675A}
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px">
 
-<div style="display: flex; flex-direction: column; gap: 22px">
+<div class="step" style="display: flex; flex-direction: column; gap: 22px">
 <div role="img" aria-label="Writing an intention" style="height: 380px; border-radius: 32px; background: #15120F; border: 1px solid #2A251E; padding: 30px 26px; display: flex; flex-direction: column; gap: 14px; box-sizing: border-box">
 <div style="font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #8A7F6E">Your intention</div>
-<div style="font-family: 'Instrument Serif', Georgia, serif; font-size: 26px; line-height: 1.15; color: #F3ECDF; border-bottom: 1px solid #4A4236; padding-bottom: 14px">For my brother, who lost his job this week<span class="fl" style="display: inline-block; width: 2px; height: 26px; background: #E2B662; margin-left: 3px; vertical-align: -4px"></span></div>
+<div style="font-family: 'Instrument Serif', Georgia, serif; font-size: 26px; line-height: 1.15; color: #F3ECDF; border-bottom: 1px solid #4A4236; padding-bottom: 14px; min-height: 60px"><span id="typed">For my brother, who lost his job this week</span><span class="fl" style="display: inline-block; width: 2px; height: 26px; background: #E2B662; margin-left: 3px; vertical-align: -4px"></span></div>
 <div style="font-size: 12px; color: #6F675A">Your town, region or country is shown, never your exact location.</div>
 <div style="flex: 1"></div>
 <span style="height: 52px; border-radius: 26px; background: #E2B662; display: flex; align-items: center; justify-content: center; font-family: 'Instrument Serif', Georgia, serif; font-size: 20px; color: #140E06">Share</span>
 </div>
-<div style="display: flex; gap: 14px; align-items: baseline"><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 22px; color: #E2B662">1</span><div style="display: flex; flex-direction: column; gap: 6px"><h3 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 28px">Share what is on your heart</h3><p style="margin: 0; font-size: 16px; line-height: 1.6; color: #B8AD9A">One intention at a time, in your own words. Signed with your first name, or fully anonymous.</p></div></div>
+<div class="txt" style="display: flex; gap: 14px; align-items: baseline"><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 22px; color: #E2B662">1</span><div style="display: flex; flex-direction: column; gap: 6px"><h3 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 28px">Share what is on your heart</h3><p style="margin: 0; font-size: 16px; line-height: 1.6; color: #B8AD9A">One intention at a time, in your own words. Signed with your first name, or fully anonymous.</p></div></div>
 </div>
 
-<div style="display: flex; flex-direction: column; gap: 22px">
+<div class="step" style="display: flex; flex-direction: column; gap: 22px">
 <div role="img" aria-label="The thirty second candle" style="height: 380px; border-radius: 32px; background: #0B0907; border: 1px solid #2A251E; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; position: relative; overflow: hidden">
 <div aria-hidden="true" style="position: absolute; top: 40%; left: 50%; width: 380px; height: 380px; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(226,182,98,0.28) 0%, rgba(226,182,98,0.06) 45%, rgba(226,182,98,0) 70%)"></div>
+<div style="position: relative; height: 196px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 22px">
 <svg class="fl" width="46" height="64" viewBox="0 0 18 24" aria-hidden="true" style="position: relative"><path d="M9 1C13 6 16 10 16 15a7 7 0 0 1-14 0C2 10 5 6 9 1Z" fill="#E2B662"></path><path d="M9 9c2 2.5 3 4.5 3 6.5a3 3 0 0 1-6 0C6 13.5 7 11.5 9 9Z" fill="#FBE3A8"></path></svg>
-<div style="position: relative; width: 26px; height: 110px; border-radius: 6px; background: linear-gradient(#EFE4CF, #CDBE9F)"></div>
-<div style="position: relative; font-family: 'Instrument Serif', Georgia, serif; font-size: 44px; color: #F3ECDF">0:18</div>
+<div id="candle-body" style="position: relative; width: 26px; height: 110px; border-radius: 6px; background: linear-gradient(#EFE4CF, #CDBE9F)"></div>
 </div>
-<div style="display: flex; gap: 14px; align-items: baseline"><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 22px; color: #E2B662">2</span><div style="display: flex; flex-direction: column; gap: 6px"><h3 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 28px">Pray for a stranger</h3><p style="margin: 0; font-size: 16px; line-height: 1.6; color: #B8AD9A">Swipe through intentions from around the world. Tap Pray and a candle burns for thirty seconds while you hold that person in prayer.</p></div></div>
+<div id="countdown" style="position: relative; font-family: 'Instrument Serif', Georgia, serif; font-size: 44px; color: #F3ECDF; font-variant-numeric: tabular-nums">0:30</div>
+</div>
+<div class="txt" style="display: flex; gap: 14px; align-items: baseline"><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 22px; color: #E2B662">2</span><div style="display: flex; flex-direction: column; gap: 6px"><h3 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 28px">Pray for a stranger</h3><p style="margin: 0; font-size: 16px; line-height: 1.6; color: #B8AD9A">Swipe through intentions from around the world. Tap Pray and a candle burns for thirty seconds while you hold that person in prayer.</p></div></div>
 </div>
 
-<div style="display: flex; flex-direction: column; gap: 22px">
+<div class="step" style="display: flex; flex-direction: column; gap: 22px">
 <div role="img" aria-label="The lights of everyone who prayed" style="height: 380px; border-radius: 32px; background: #15120F; border: 1px solid #2A251E; padding: 30px 26px; display: flex; flex-direction: column; gap: 10px; box-sizing: border-box">
 <div style="font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #8A7F6E">Your intention</div>
 <div style="display: flex; align-items: flex-end; gap: 10px"><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 88px; line-height: 0.9; color: #E2B662">48</span><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 20px; line-height: 1.2; padding-bottom: 8px">people prayed<br>for this</span></div>
@@ -119,7 +122,7 @@ input::placeholder{color:#6F675A}
 <template data-lights="someLights"><span class="lt" style="width: 5px; height: 5px; border-radius: 50%; background: #E2B662; box-shadow: 0 0 6px rgba(226,182,98,0.55); animation-delay: ${d.delay}; animation-duration: ${d.dur}"></span></template>
 </div>
 </div>
-<div style="display: flex; gap: 14px; align-items: baseline"><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 22px; color: #E2B662">3</span><div style="display: flex; flex-direction: column; gap: 6px"><h3 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 28px">See every light</h3><p style="margin: 0; font-size: 16px; line-height: 1.6; color: #B8AD9A">Each prayer becomes a small flickering light on your intention. You never see who prayed, only that you were not alone.</p></div></div>
+<div class="txt" style="display: flex; gap: 14px; align-items: baseline"><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 22px; color: #E2B662">3</span><div style="display: flex; flex-direction: column; gap: 6px"><h3 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 28px">See every light</h3><p style="margin: 0; font-size: 16px; line-height: 1.6; color: #B8AD9A">Each prayer becomes a small flickering light on your intention. You never see who prayed, only that you were not alone.</p></div></div>
 </div>
 
 </div>
@@ -195,6 +198,31 @@ fetch('https://mneyoklaedqkrjofvofw.supabase.co/rest/v1/rpc/join_waitlist',{meth
 .then(function(r){if(!r.ok)throw r;f.reset();m.textContent='Thank you. We will write to you when it opens.';})
 .catch(function(){m.textContent='That did not work. Please check the email and try again.';})
 .finally(function(){b.disabled=false;});});})();
+</script>
+<script>
+(function(){
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function watch(el,onIn,onOut){new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?onIn():onOut();});},{threshold:0.5}).observe(el);}
+var typed=document.getElementById('typed');
+if(typed&&!reduce){
+  var lines=['For my brother, who lost his job this week','For my mum, who starts chemotherapy on Monday','For our baby, born six weeks early','For my dad, waiting for heart surgery','For a friend whose marriage is falling apart'];
+  var i=0,pos=lines[0].length,del=true,timer=0,on=false;
+  function tick(){if(!on)return;var t=lines[i];
+    if(del){pos--;typed.textContent=t.slice(0,pos);if(pos<=0){del=false;i=(i+1)%lines.length;timer=setTimeout(tick,350);return;}timer=setTimeout(tick,22);}
+    else{pos++;typed.textContent=lines[i].slice(0,pos);if(pos>=lines[i].length){del=true;timer=setTimeout(tick,1900);return;}timer=setTimeout(tick,48+Math.random()*40);}}
+  watch(typed.closest('[role=img]'),function(){if(on)return;on=true;timer=setTimeout(tick,1200);},function(){on=false;clearTimeout(timer);});
+}
+var body=document.getElementById('candle-body'),cd=document.getElementById('countdown');
+if(body&&cd){
+  var raf=0,FULL=110,STUB=14,SECS=30;
+  function show(left){var sec=Math.ceil(left);cd.textContent='0:'+(sec<10?'0':'')+sec;body.style.height=(STUB+(FULL-STUB)*left/SECS)+'px';}
+  function reset(){cancelAnimationFrame(raf);show(SECS);}
+  function start(){cancelAnimationFrame(raf);var t0=performance.now();
+    (function step(now){var left=Math.max(0,SECS-(now-t0)/1000);show(left);if(left>0)raf=requestAnimationFrame(step);})(t0);}
+  reset();
+  if(!reduce)watch(body.closest('[role=img]'),start,reset);
+}
+})();
 </script>
 </body>
 </html>
