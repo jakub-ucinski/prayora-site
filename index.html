@@ -104,10 +104,15 @@ input::placeholder{color:#6F675A}
 
 <div class="step" style="display: flex; flex-direction: column; gap: 22px">
 <div role="img" aria-label="The thirty second candle" style="height: 380px; border-radius: 32px; background: #0B0907; border: 1px solid #2A251E; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; position: relative; overflow: hidden">
-<div aria-hidden="true" style="position: absolute; top: 40%; left: 50%; width: 380px; height: 380px; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(226,182,98,0.28) 0%, rgba(226,182,98,0.06) 45%, rgba(226,182,98,0) 70%)"></div>
-<div style="position: relative; height: 196px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 22px">
-<svg class="fl" width="46" height="64" viewBox="0 0 18 24" aria-hidden="true" style="position: relative"><path d="M9 1C13 6 16 10 16 15a7 7 0 0 1-14 0C2 10 5 6 9 1Z" fill="#E2B662"></path><path d="M9 9c2 2.5 3 4.5 3 6.5a3 3 0 0 1-6 0C6 13.5 7 11.5 9 9Z" fill="#FBE3A8"></path></svg>
-<div id="candle-body" style="position: relative; width: 26px; height: 110px; border-radius: 6px; background: linear-gradient(#EFE4CF, #CDBE9F)"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(ellipse 85% 60% at 50% 66%, rgba(142,47,69,0.42) 0%, rgba(92,30,46,0.24) 45%, rgba(40,12,20,0.25) 80%, rgba(40,12,20,0.2) 100%)"></div>
+<div style="position: relative; height: 236px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end">
+<div style="position: relative; width: 34px; height: 44px">
+<div aria-hidden="true" style="position: absolute; left: 50%; top: 50%; width: 300px; height: 300px; transform: translate(-50%, -50%); background: radial-gradient(circle closest-side, rgba(226,182,98,0.3) 0%, rgba(226,182,98,0.08) 55%, rgba(226,182,98,0) 100%)"></div>
+<svg class="fl" width="34" height="44" viewBox="0 0 30 38" aria-hidden="true" style="position: relative"><path d="M15 2C17 9 25 13 25 23a10 10 0 0 1-20 0c0-5 3-8 5-10 0 4 2 6 4 6-1-6 1-12 1-17z" fill="#F29A38"></path><path d="M15 2C17 9 25 13 25 23a10 10 0 0 1-20 0c0-5 3-8 5-10 0 4 2 6 4 6-1-6 1-12 1-17z" fill="#FFC93E" transform="translate(15 33) scale(0.66) translate(-15 -33)"></path><path d="M15 2C17 9 25 13 25 23a10 10 0 0 1-20 0c0-5 3-8 5-10 0 4 2 6 4 6-1-6 1-12 1-17z" fill="#FFF1C4" transform="translate(15 33) scale(0.34) translate(-15 -33)"></path></svg>
+</div>
+<div style="width: 2px; height: 10px; background: #3B3329"></div>
+<div id="candle-body" style="position: relative; width: 56px; height: 150px; border-radius: 6px 6px 2px 2px; background: linear-gradient(90deg, rgba(0,0,0,0.08) 0 14px, transparent 14px 42px, rgba(0,0,0,0.1) 42px 56px), #EFE6D3"></div>
+<div style="width: 120px; height: 6px; border-radius: 3px; background: #1C1814"></div>
 </div>
 <div id="countdown" style="position: relative; font-family: 'Instrument Serif', Georgia, serif; font-size: 44px; color: #F3ECDF; font-variant-numeric: tabular-nums">0:30</div>
 </div>
@@ -214,7 +219,7 @@ if(typed&&!reduce){
 }
 var body=document.getElementById('candle-body'),cd=document.getElementById('countdown');
 if(body&&cd){
-  var raf=0,FULL=110,STUB=14,SECS=30;
+  var raf=0,FULL=150,STUB=30,SECS=30;
   function show(left){var sec=Math.ceil(left);cd.textContent='0:'+(sec<10?'0':'')+sec;body.style.height=(STUB+(FULL-STUB)*left/SECS)+'px';}
   function reset(){cancelAnimationFrame(raf);show(SECS);}
   function start(){cancelAnimationFrame(raf);var t0=performance.now();
