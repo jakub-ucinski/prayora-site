@@ -13,7 +13,7 @@
   h1 em { color: #E2B662; }
   .card { position: relative; margin-top: 24px; aspect-ratio: 0.73; border-radius: 28px; background: #1B1713; border: 1px solid #3A3126; padding: 26px; display: flex; flex-direction: column; overflow: hidden; }
   .eyebrow { font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: #A88E7E; font-weight: 500; line-height: 1.6; }
-  .given { margin-top: 2px; font-size: 13px; color: #E2B662; }
+  .given { margin-top: 8px; font-size: 13px; color: #82766A; }
   .art { flex: 1; position: relative; margin: 12px 0; }
   .art canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
   .body { font-family: 'Instrument Serif', Georgia, serif; font-size: 30px; line-height: 1.15; }
@@ -78,11 +78,11 @@ async function load() {
     <h1>${c.author_name ? esc(c.author_name) + ' asks you to pray' : 'Someone asks you to pray'}<br><em>for this intention</em></h1>
     <div class="card">
       ${who ? `<div class="eyebrow">${esc(who)}</div>` : ''}
-      ${c.author_prayed ? `<div class="given">Has prayed for ${c.author_prayed} other ${c.author_prayed === 1 ? 'person' : 'people'}</div>` : ''}
       ${c.photo ? '<div class="art"><canvas></canvas></div>' : '<div style="flex:1"></div>'}
       <div class="body${c.photo ? ' photo' : ''}">${esc(c.body)}</div>
       ${c.photo ? '' : '<div style="flex:1"></div>'}
       <div class="count">${count}</div>
+      ${c.author_prayed ? `<div class="given">${c.author_name ? esc(c.author_name) + ' has' : 'They have'} prayed for ${c.author_prayed} other ${c.author_prayed === 1 ? 'person' : 'people'}</div>` : ''}
     </div>
     <a class="pray" href="prayerapp://i/${esc(c.id)}">Pray for this in Prayora</a>
     <a class="get" href="../#get">Don't have Prayora yet? Get the app</a>
