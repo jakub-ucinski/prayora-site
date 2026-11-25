@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pray for this intention | Prayora</title><meta name="theme-color" content="#0E0C0A"><link rel="icon" href="../favicon.png">
+<meta property="og:title" content="Would you pray for this with me?"><meta property="og:description" content="An intention on Prayora. Open it to pray for it."><meta property="og:image" content="https://getprayora.com/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  /* A shared intention: the card as anyone sees it, and a way to pray for it. */
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: #0E0C0A; color: #F5E9D8; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  main { max-width: 440px; margin: 0 auto; padding: 28px 24px 40px; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; color: #F5E9D8; text-decoration: none; font-family: 'Instrument Serif', Georgia, serif; font-size: 24px; }
+  h1 { margin: 26px 0 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 36px; line-height: 1.08; }
+  h1 em { color: #E2B662; }
+  .card { position: relative; margin-top: 24px; aspect-ratio: 0.73; border-radius: 28px; background: #1B1713; border: 1px solid #3A3126; padding: 26px; display: flex; flex-direction: column; overflow: hidden; }
+  .eyebrow { font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: #A88E7E; font-weight: 500; line-height: 1.6; }
+  .given { margin-top: 2px; font-size: 13px; color: #E2B662; }
+  .art { flex: 1; position: relative; margin: 12px 0; }
+  .art canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .body { font-family: 'Instrument Serif', Georgia, serif; font-size: 30px; line-height: 1.15; }
+  .body.photo { font-size: 24px; }
+  .count { margin-top: 14px; font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-size: 22px; color: #E2B662; }
+  .pray { display: flex; align-items: center; justify-content: center; margin-top: 24px; height: 58px; border-radius: 29px; background: #F0C978; color: #140E06; text-decoration: none; font-family: 'Instrument Serif', Georgia, serif; font-size: 22px; }
+  .get { display: block; margin-top: 14px; text-align: center; color: #B8AA9B; font-size: 14px; }
+  .note { margin-top: 12px; text-align: center; color: #82766A; font-size: 13px; line-height: 1.5; }
+  .gone { margin-top: 60px; text-align: center; font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; }
+</style></head><body>
+<main>
+  <a class="brand" href="../">Prayora</a>
+  <div id="view"></div>
+</main>
+<script>
+const SUPABASE = 'https://mneyoklaedqkrjofvofw.supabase.co';
+const KEY = 'sb_publishable_wzFGRd_WEevqRa1EkWRaeg_17q90gaV';
+const id = new URLSearchParams(location.search).get('id') || '';
+const view = document.getElementById('view');
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+function countryName(code) {
+  try { return new Intl.DisplayNames(['en'], { type: 'region' }).of(code); } catch { return code; }
+}
+
+// The smoothed photo, drawn as a soft shadow of light, as on the card before its lights fill in.
+function drawPhoto(canvas, sil) {
+  const [w, h, b64] = sil.split(',');
+  const W = +w, H = +h, data = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+  if (!W || !H || data.length !== W * H) return;
+  const r = canvas.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+  canvas.width = r.width * dpr; canvas.height = r.height * dpr;
+  const g = canvas.getContext('2d');
+  const sc = Math.min(canvas.width / W, canvas.height / H);
+  const ox = (canvas.width - W * sc) / 2, oy = (canvas.height - H * sc) / 2;
+  // Fade out along edges where the photo cut the people off.
+  const rows = new Array(H).fill(0); for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (data[y * W + x]) rows[y]++;
+  const maxRow = Math.max(...rows), cutBottom = rows[H - 1] > 0.3 * maxRow, len = 0.22 * Math.max(W, H);
+  g.filter = `blur(${Math.max(1, sc * 0.6)}px)`;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const v = data[y * W + x]; if (!v) continue;
+    let a = 0.12 + 0.88 * Math.pow((v - 1) / 254, 1.2);
+    if (cutBottom) a *= Math.pow(Math.min(1, (H - 1 - y) / len), 1.5);
+    g.fillStyle = `rgba(226,182,98,${(0.22 * a).toFixed(3)})`;
+    g.fillRect(ox + x * sc, oy + y * sc, sc + 0.5, sc + 0.5);
+  }
+}
+
+async function load() {
+  if (!/^[0-9a-f-]{36}$/i.test(id)) return gone();
+  const res = await fetch(`${SUPABASE}/rest/v1/rpc/shared_intention`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json', apikey: KEY }, body: JSON.stringify({ p_id: id }),
+  });
+  const rows = res.ok ? await res.json() : [];
+  const c = rows[0];
+  if (!c) return gone();
+  const place = [c.place_name, c.country_code ? countryName(c.country_code) : null].filter(Boolean).join(', ');
+  const who = [c.author_name, place].filter(Boolean).join(', ');
+  const waiting = new Date(c.lit_at) > new Date();
+  const count = c.prayer_count ? `${c.prayer_count.toLocaleString('en-GB')} ${c.prayer_count === 1 ? 'prayer' : 'prayers'} so far` : 'Be the first to pray for this';
+  view.innerHTML = `
+    <h1>${c.author_name ? esc(c.author_name) + ' asks you to pray' : 'Someone asks you to pray'}<br><em>for this intention</em></h1>
+    <div class="card">
+      ${who ? `<div class="eyebrow">${esc(who)}</div>` : ''}
+      ${c.author_prayed ? `<div class="given">Has prayed for ${c.author_prayed} other ${c.author_prayed === 1 ? 'person' : 'people'}</div>` : ''}
+      ${c.photo ? '<div class="art"><canvas></canvas></div>' : '<div style="flex:1"></div>'}
+      <div class="body${c.photo ? ' photo' : ''}">${esc(c.body)}</div>
+      ${c.photo ? '' : '<div style="flex:1"></div>'}
+      <div class="count">${count}</div>
+    </div>
+    <a class="pray" href="prayerapp://i/${esc(c.id)}">Pray for this in Prayora</a>
+    <a class="get" href="../#get">Don't have Prayora yet? Get the app</a>
+    ${waiting ? `<p class="note">Everyone else's candles light together on ${new Date(c.lit_at).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })}. With this link you can pray for it now.</p>` : ''}`;
+  if (c.photo) drawPhoto(view.querySelector('canvas'), c.photo);
+}
+function gone() { view.innerHTML = '<p class="gone">This intention is no longer burning.</p><a class="pray" href="../">Go to Prayora</a>'; }
+load().catch(gone);
+</script>
+</body></html>
