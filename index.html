@@ -24,6 +24,11 @@ a{color:#E2B662}a:hover{color:#F0C978}
 input::placeholder{color:#6F675A}
 @media (max-width:700px){.step .txt{order:-1}}
 .flame-text{font-style:italic;color:#FFC93E;background:linear-gradient(180deg,#FFE7A8 0%,#FFD25A 32%,#FFC93E 48%,#F29A38 76%,#EC8A2E 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;padding:0.05em 0.1em 0.24em 0.12em;margin:-0.05em -0.1em -0.24em -0.12em}
+.rot{display:inline-grid}.rot>span{grid-area:1/1;opacity:0;animation:rot 12s infinite}
+.rot>span:nth-child(2){animation-delay:3s}.rot>span:nth-child(3){animation-delay:6s}.rot>span:nth-child(4){animation-delay:9s}
+@keyframes rot{0%{opacity:0;transform:translateY(10px)}4%,22%{opacity:1;transform:none}27%,100%{opacity:0;transform:translateY(-10px)}}
+@media (prefers-reduced-motion:reduce){.rot>span{animation:none}.rot>span:first-child{opacity:1}}
+.pframe{box-sizing:border-box;border-style:solid;box-shadow:8px 16px 30px rgba(43,33,24,.35),1px 2px 3px rgba(0,0,0,.35)}
 </style>
 
 </head>
@@ -131,6 +136,28 @@ input::placeholder{color:#6F675A}
 <div class="txt" style="display: flex; gap: 14px; align-items: baseline"><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 22px; color: #E2B662">3</span><div style="display: flex; flex-direction: column; gap: 6px"><h3 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 28px">See every light</h3><p style="margin: 0; font-size: 16px; line-height: 1.6; color: #B8AD9A">Each prayer becomes a small flickering light on your intention. You never see who prayed, only that you were not alone.</p></div></div>
 </div>
 
+</div>
+</section>
+
+<section id="poster" style="border-top: 1px solid #1F1B16">
+<div style="max-width: 1200px; margin: 0 auto; padding: 110px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px">
+<div style="flex: 1 1 380px; display: flex; flex-direction: column; gap: 22px; max-width: 520px">
+<div style="font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #A89C88">A gift for Christmas</div>
+<h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(44px, 6vw, 68px); line-height: 1.02; letter-spacing: -0.5px">Your intention,<br><span class="rot"><span class="flame-text">as a gift.</span><span class="flame-text">remembered.</span><span class="flame-text">on your wall.</span><span class="flame-text">kept in light.</span></span></h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.65; color: #C9BFAE">Every prayer your intention received becomes a light. We print every one of them with your words, frame it, and send it, to you or to someone you love.</p>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; gap: 14px; padding: 16px 18px; border: 1px solid #2E2820; border-radius: 16px"><div><div style="font-family: 'Instrument Serif', Georgia, serif; font-size: 22px">Framed poster, 50 x 70 cm</div><div style="font-size: 13px; color: #8A7F6E; margin-top: 3px">Delivered ready to hang. Black or oak frame.</div></div><div style="margin-left: auto; font-size: 15px; color: #E2B662; white-space: nowrap">449 zł</div></div>
+<div style="display: flex; align-items: center; gap: 14px; padding: 16px 18px; border: 1px solid #2E2820; border-radius: 16px"><div><div style="font-family: 'Instrument Serif', Georgia, serif; font-size: 22px">Print file</div><div style="font-size: 13px; color: #8A7F6E; margin-top: 3px">Print and frame it yourself, at any size.</div></div><div style="margin-left: auto; font-size: 15px; color: #E2B662; white-space: nowrap">39 zł</div></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center">
+<a href="#get" style="display: inline-flex; align-items: center; justify-content: center; height: 56px; padding: 0 30px; border-radius: 28px; background: #F0C978; color: #140E06; text-decoration: none; font-family: 'Instrument Serif', Georgia, serif; font-size: 22px">Get the app</a>
+<span style="font-size: 14px; color: #8A7F6E">Ordering opens in the app in December.</span>
+</div>
+</div>
+<div style="flex: 1 1 380px; max-width: 560px; aspect-ratio: 1 / 1.05; border-radius: 18px; background: url(img/wall.jpg) center / cover; display: flex; align-items: center; justify-content: center" role="img" aria-label="Two framed posters on a wall: a burgundy one in a black frame and an off-white one in an oak frame, each with an intention and a wall of lights">
+<div class="pframe" style="width: 38%; aspect-ratio: 5 / 7; border-width: 7px; border-color: #2B2520 #15110E #0F0C0A #1E1915; background: url(img/poster-burgundy.jpg) center / cover; transform: translate(-6%, 4%)"></div>
+<div class="pframe" style="width: 38%; aspect-ratio: 5 / 7; border-width: 7px; border-color: #C9A26F #9E7A4E #8E6D45 #B08A5A; background: url(img/poster-offwhite.jpg) center / cover; transform: translate(6%, -4%)"></div>
+</div>
 </div>
 </section>
 
